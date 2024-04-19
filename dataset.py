@@ -5,11 +5,6 @@ from sklearn.preprocessing import OneHotEncoder
 def load_dataset():
     df = pd.read_csv("cleaned_shifted_data.csv")
     
-    oe = OneHotEncoder(sparse_output=False)
-    encoded = oe.fit_transform(pd.DataFrame(df['Station']))
-    one_hot_df = pd.DataFrame(encoded, columns=oe.get_feature_names_out(['Station']))
-    df = pd.concat([df, one_hot_df], axis=1)
-    
     drop_cols = [0,1,2,12,14,16]
     drop_cols = df.columns[drop_cols]
     df.drop(drop_cols,axis=1,inplace=True)
